@@ -1,0 +1,168 @@
+/* Color Pallette
+https://coolors.co/palette/ff0000-ff8700-ffd300-deff0a-a1ff0a-0aff99-0aefff-147df5-580aff-be0aff
+*/
+body {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+}
+#home {
+  background-color: #be0aff;
+}
+#html {
+  background-color: #ffd300;
+}
+#php {
+  background-color: #0aefff;
+}
+
+#container {
+  width: 80%;
+  margin: 1em auto;
+  background-color: white;
+}
+
+table,
+td {
+  border: 1px solid #ddd;
+  padding: 0.6em;
+  font-size: 1rem;
+}
+
+pre,
+code {
+  color: #555;
+  font-family: "Source Code Pro", monospace;
+}
+img {
+  width: 80%;
+  box-shadow: 0 0 10px #bbb;
+  border-radius: 8px;
+}
+h2 {
+  margin-top: 3em;
+}
+header h1 {
+  text-align: center;
+}
+.header-img {
+  width: 100%;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0%;
+  display: block;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #580aff;
+}
+nav a {
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bolder;
+}
+nav a:hover {
+  background-color: #0aefff;
+  color: #580aff;
+}
+
+main {
+  padding: 2.5em;
+  font-size: 1.4em;
+}
+
+footer {
+  text-align: center;
+  padding: 0.2em;
+}
+
+main {
+  line-height: 1.5em;
+}
+main a {
+  text-decoration: none;
+  font-family: "Source Code Pro", monospace;
+}
+main a:hover {
+  color: #ff8700;
+  text-decoration: underline;
+}
+main span {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+}
+.lefty {
+  margin-left: 2em;
+  padding: 0.4em;
+  border-left: 4px solid #eee;
+  border-top: 1px solid #eee;
+  font-family: "Source Code Pro", monospace;
+  line-height: 2em;
+}
+.abs_path {
+  color: #7b2cbf;
+  font-weight: bolder;
+}
+.folder {
+  color: #580aff;
+}
+.rel_path {
+  color: #d62828;
+  font-weight: bolder;
+}
+.two_cols {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 2em;
+}
+.left_col pre {
+  margin: 0;
+}
+
+.code_block {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #bbb;
+  padding: 20px;
+}
+
+.button {
+  color: #333;
+  text-align: center;
+  margin: 2em;
+}
+.php {
+  padding: 1em;
+  background-color: #0aefff;
+  border: 6px dashed #ff8700;
+}
+.html {
+  padding: 1em;
+  background-color: #ffd300;
+  border: 6px dashed #ff8700;
+}
+
+.html:hover,
+.php:hover {
+  border: 6px dashed #a1ff0a;
+  color: #580aff;
+}
+.note {
+  background-color: #ffffe0;
+  padding: 20px;
+  margin: 40px -2.5em 0px -2.5em;
+}
+.center-image {
+  text-align: center;
+}
+.center-image img {
+  background: white;
+}

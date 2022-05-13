@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+  <title>Understanding File Paths</title>
+  <link href='css/style.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body id="home">
+
+  <div id='container'>
+    <img class="header-img" alt="many paths crossing - Photo by Victor Charlie on Unsplash" src="images/victor-charlie-QG9xUOQTYCY-unsplash.jpg">
+    <nav>
+      <a title="Link to HTML example" href="/html/index.html">HTML Example</a>
+      <a title="Link to PHP example" href="/php/index.html">PHP Example</a>
+    </nav>
+
+    <header>
+      <h1>Understanding File Paths</h1>
+    </header>
+
+    <main>
+      <p>There are two types of file paths to understand when building websites: <span class="abs_path">Absolute Paths</span> and <span class="rel_path">Relative Paths</span></p>
+
+      <p>In very general terms, the paths can be defined as such:</p>
+        <dl>
+          <dt><span class="abs_path">Absolute Path</span></dt>
+          <dd>
+            <p>The path begins at the computer's root directory. If the path begins with a forward slash <code>/</code> or the full HTTP protocol, then it is an absolute path.</p>
+            <pre class="code_block">&lt;link rel="stylesheet" href="<span class="abs_path">/css/style.css</span>"></pre>
+            <pre class="code_block">&lt;a href="<span class="abs_path">http://coolwebsite/html/index.html</span>">HTML Page&lt;/a></pre>
+            <pre class="code_block">&lt;?php include '<span class="abs_path">/var/www/coolwebsite/common/header.php</span>'; ?></pre>
+            <pre class="code_block">&lt;?php include <span class="abs_path">$_SERVER['DOCUMENT_ROOT'] . 'common/header.php'</span>; ?></pre>
+          </dd>
+
+          <dt><span class="rel_path">Relative Path</span></dt>
+          <dd>
+            <p>The path is relative to the folder where the file lives. If the path begins with a double period <code>..</code> or NO forward slash <code>/</code>, then it is a relative path.</p>
+            <pre class="code_block">&lt;link rel="stylesheet" href="<span class="rel_path">css/style.css</span>"></pre>
+            <pre class="code_block">&lt;a href="<span class="rel_path">html/index.html</span>">HTML Page&lt;/a></pre>
+            <pre class="code_block">&lt;?php include '<span class="rel_path">common/header.php</span>'; ?></pre>
+            <pre class="code_block">&lt;?php include <span class="rel_path">'gopher.php'</span>; ?></pre>
+            </dd>
+        </dl>
+
+      <h2>HTML</h2>
+      <p>In HTML, file paths are associated with the web root, the folder where the files for the website are located. The web root folder is mapped to the domain name. If the website is not using a framework that utilizes routing, then the forward slashes in the URL reference folders in the web root.</p>
+      <div class="button"><a class="html" href="/html/index.html">Learn About HTML Paths</a></div>
+
+      <h2>PHP</h2>
+      <p>In PHP, file paths are associated with the file system of the computer. The root directory in a PHP file path maps to the the root directory of the computer.</p>
+      <div class="button"><a class="php" href="/php/index.html">Learn About PHP Paths</a></div>
+
+
+    </main>
+
+    <footer>
+      <p>&copy; 2022, Ammon Shepherd</p>
+    </footer>
+
+</body>
+
+</html>

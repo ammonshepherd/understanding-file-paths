@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+  <title>Understanding File Paths - HTML</title>
+  <link href='/css/style.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body id="html">
+
+  <div id='container'>
+    <img class="header-img" alt="many paths crossing - Photo by Victor on Unsplash" src="/images/victor-0Ezh0PRhtPo-unsplash.jpg">
+    <nav>
+      <a title="Link to Home" href="/index.html">Home</a>
+      <a title="Link to PHP example" href="/php/index.html">PHP Example</a>
+    </nav>
+
+    <header>
+      <h1>Understanding File Paths - HTML</h1>
+    </header>
+
+    <main>
+      <h2>The Set Up</h2>
+      <p>Let's suppose that we have a website hosted on a server. We are instructed to put the
+        files to be served in the following directory.</p>
+      <span class="lefty file_path">/var/www/coolwebsite/</span>
+
+      <p>The files in this folder will be available on the following website address, or URL</p>
+      <span class="lefty url">http://coolwebsite.com/</span>
+
+
+      <h2 class="abs_path">Absolute Path</h2>
+      <p>The root, or start of the file path, is the directory from where the website is served.</p>
+      <p>Let's say that we create an HTML file named <code>index.html</code> in the <code>/var/www/coolwebsite/</code> folder with the following link.</p>
+
+      <code class="lefty">&lt;a href="<span class="abs_path">/projects/pandas.html</span>"&gt;My Panda Project&lt;/a&gt;</code>
+
+      <p>This produces the following URL</p>
+
+      <code class="lefty">http://coolwebsite.com<span class="abs_path">/projects/pandas.html</span></code>
+
+      <p>and links to the following file on the web server/computer.</p>
+
+      <code class="lefty">/var/www/coolwebsite<span class="abs_path">/html/absolute.html</span></code>
+
+      <p>We could also include the full URL in the link. This is also an acceptable absolute file path.</p>
+      <code class="lefty">&lt;a href="http://coolwebsite.com<span class="abs_path">/html/absolute.html</span>"&gt;Absolute link&lt;/a&gt;</code>
+
+      <p>By using the Fully Qualified Domain Name (FQDN) or using the forward slash <code>/</code>, you can access the web root of that website.</p>
+      <p>The forward slashes in a website address (after the FQDN) reference folders in the web root. (Unless you are using a web framework that utilizes routing.)</p>
+      <p>For example, the address <code>http://coolwebsite.com/index.html</code> points to a file in the web root directory named index.html</p>
+
+      <div class="center-image">
+        <img alt="File in the browser and Finder" src="/images/browser-finder.png">
+      </div>
+
+      <p>A web server translates the domain name (FQDN) to a specific folder. This allows a web server to handle multiple websites.</p>
+      <p>In very simplistic terms, every domain name points to a specific folder. This folder becomes the web root, or root directory, for that website.</p>
+
+      <p>Absolute paths start at the web root, or root directory for the website, which is a specific folder on the server. The domain name points to that folder. Everything after the domain name in the URL corresponds to folders and files in the web root.</p>
+
+      <table>
+        <caption>Absolute Links and File Paths</caption>
+        <tr>
+          <th>Code in HTML file</th>
+          <th>URL in Browser</th>
+          <th>File path on server</th>
+        </tr>
+        <tr>
+          <td>&lt;a href="<span class="abs_path">/projects/pandas.html</span>"&gt;Panda Projects&lt;/a&gt;</td>
+          <td>http://coolwebsite.com<span class="abs_path">/projects/pandas.html</span></td>
+          <td>/var/www/coolwebsite<span class="abs_path">/projects/pandas.html</span></td>
+        </tr>
+        <tr>
+          <td>&lt;link href="<span class="abs_path">/css/styles.css</span>" rel="stylesheet"&gt;</td>
+          <td>http://coolwebsite.com<span class="abs_path">/css/styles.css</span></td>
+          <td>/var/www/coolwebsite<span class="abs_path">/css/styles.css</span></td>
+        </tr>
+        <tr>
+          <td>&lt;img src="<span class="abs_path">/images/logo.jpg</span>"&gt;</td>
+          <td>http://coolwebsite.com<span class="abs_path">/images/logo.jpg</span></td>
+          <td>/var/www/coolwebsite<span class="abs_path">/images/logo.jpg</span></td>
+        </tr>
+      </table>
+
+      <p>The thing to remember with <span class="abs_path">Absolute Paths</span> is that they start with a forward slash (<code>/</code>) or a domain name (<code>http://....</code>) which means they map to the web root directory.</p>
+
+      <h2 class="rel_path">Relative Path</h2>
+      <p>Relative paths depend upon the where file "lives", the folder in which the file resides.</p>
+      <p>If we create the following link in our <code>index.html</code> file that resides in the <code>/var/www/coolwebsite/</code> folder</p>
+
+      <code class="lefty">&lt;a href="<span class="rel_path">relative.html</span>"&gt;Relative link&lt;/a&gt;</code>
+
+      <p>then in order for that file to be served, it would need to reside in the same folder as the <code>index.html</code> file.</p>
+      
+      <code class="lefty">/var/www/coolwebsite/<span class="rel_path">relative.html</span></code>
+
+      <p>Let's say we have a <code>css</code> folder for holding all the CSS styles. It is at <code>/var/www/coolwebsite/css/</code>, and we have a <code>styles.css</code> file in there - <code>/var/www/coolwebsite/<span class="rel_path">css/styles.css</span></code></p>
+
+      <p>In order to access that file from our <code>/var/www/coolwebsite/index.html</code> file, we can use the following path in our HTML code</p>
+
+      <code class="lefty">&lt;link rel="stylesheet" href="<span class="rel_path">css/styles.css</span>"&gt;</code>
+
+      <p>The <code>index.html</code> file and the <code>css</code> folder reside in the same <code>coolwebsite</code> folder.</p>
+
+      <div class="center-image">
+        <img alt="index.html file and css folder in same folder" src="/images/styles.png">
+      </div>
+
+
+      <p>Now, what about our <code>pandas.html</code> file? In order for it to access the <code>styles.css</code> file, it needs to go outside it's parent directory (<code>projects</code>), then into the <code>css</code> folder.</p>
+
+      <div class="center-image">
+        <img alt="out of the parent folder, into the css folder" src="/images/rel.png">
+      </div>
+
+      <p>To indicate that you are traversing the file structure (or moving in and out of folders, or up and down into folders), you will use two periods (<code>..</code>) to represent moving out of a folder, or up the structure.</p>
+      <p>The code in the <code>pandas.html</code> file to include the <code>styles.css</code> file would be</p>
+
+      <code class="lefty">&lt;link href="<span class="rel_path">../css/styles.css</span>" rel="stylesheet"&gt;</code>
+
+      <p>Why do we say up and down the file structure? Traditionally, back in the ancient days of computing when interaction with the computer was purely text based, the 'graphical' depiction of the file structure was that of a tree, or outline of folders and files. It might looks something like this:</p>
+
+      <pre>> tree -L 4 var/
+<span class="folder">var/</span>
+└── <span class="folder">www/</span>
+    └── <span class="folder">coolwebsite/</span>
+        ├── <span class="folder">css/</span>
+        │   └── styles.css
+        ├── index.html
+        └── <span class="folder">projects/</span>
+            └── pandas.html
+</pre>
+
+      <p>Thus, using <code>..</code>, you can traverse the entire file structure of the website, and the server (as far as is allowed).</p>
+
+      <p>The thing to remember with <span class="rel_path">Relative paths</span> is that they depend upon the location of the file that uses the path.</p>
+      <p>If the file path starts with periods <code>..</code>, or does not start with a forward slash <code>/</code>, then it is a <span class="rel_path">Relative path</span>.</p>
+    </main>
+
+    <nav>
+      <a title="Link to Home" href="/index.html">Home</a>
+      <a title="Link to PHP example" href="/php/index.html">PHP Example</a>
+    </nav>
+      
+    <footer>
+      <p>&copy; 2022, Ammon Shepherd</p>
+    </footer>
+
+</body>
+
+</html>

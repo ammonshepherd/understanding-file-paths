@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+  <title>Understanding File Paths - PHP</title>
+  <link href='/css/style.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body id="php">
+
+  <div id='container'>
+    <img class="header-img" alt="many paths crossing - Photo by Victor on Unsplash" src="/images/john-lockwood-FcLq69V7Rsc-unsplash.jpg">
+    <nav>
+      <a title="Link to Home" href="/index.html">Home</a>
+      <a title="Link to HTML example" href="/html/index.html">HTML Example</a>
+    </nav>
+
+    <header>
+      <h1>Understanding File Paths - PHP</h1>
+    </header>
+
+    <main>
+      <h2>The Setup</h2>
+      <p>For local development (making a website on your computer), then the root directory and web root directory depends on what software you are using to create the local development environment.</p>
+      <p>If you are using a set of Docker containers, like with <a href="https://github.com/ammonshepherd/pmamp/">PMAMP</a>, then the file system is actually based on the Virtual Machine created by Docker (not your personal computer). The path to the web root could be something like <span class="abs_path">/var/www/coolsite/</span></p>
+      <p>If you are using something like <a href="https://www.apachefriends.org/download.html">XAMPP</a>, then your root directory is on your computer. The path to the web root could be something like <span class="abs_path">C:\xampp\htdocs\</span></p>
+
+      <p>For the examples on this page, we'll assume a set up using PMAMP.</p>
+      <p>Our website files will have a local computer location (something like <code>/Users/ammon/Documents/Websites/coolwebsite/</code>) where the Docker files will reside. This is where we can edit the files.</p>
+      <p>But they will also have a path relative to their existence in the Docker container. This path is:</p>
+
+      <code class="lefty">/var/www/coolwebsite/</code>
+
+      <p>The files in this folder will be available on the following website address, or URL</p>
+      <code class="lefty">http://coolwebsite.com/</code>
+
+      <div class="note">
+      <p>NOTE: A quick clarification about Docker on you computer. Docker creates a virtual machine (or several) and runs them on your computer. For all intents and purposes, it is like you have multiple computers running at the same time. They are able to interact with each other in a limited and specific fashion.</p>
+      <p>Therefore, when you run a web server in a Docker container, the server/computer root directory, and the web root directory are relative to the Docker container, not your local computer.</p>
+
+        <div class="center-image">
+          <a title="link to image of Docker, computer and browser" href="/images/docker-file-path.png" target="_blank"><img alt="Folders on Docker, computer, and browser" src="/images/docker-file-path.png"></a>
+        </div>
+      </div>
+
+
+    <h2 class="abs_path">Absolute Paths</h2>
+      <p>In PHP, file paths are associated with the file system of the computer. The root directory in a PHP file path maps to the the root directory of the computer, or web server (or Docker container).</p>
+
+      <p>We often include other PHP files in our PHP code. This makes it easy to modularize our website. We can take the common HTML or other code, and place it a separate files for all other PHP files to access. For example, we can take the HTML for the beginning of a website and place it in a <code>header.php</code> file. Then all of the website's pages can reference, or include, the <code>header.php</code> file to get all of the HTML.</p>
+
+      <p>For example, let's say we have this folder structure for our website:</p>
+      <pre>
+  > tree -L 4 var/
+  <span class="folder">var/</span>
+    └── <span class="folder">www/</span>
+      └── <span class="folder">coolwebsite/</span>
+        ├── <span class="folder">common/</span>
+        │   ├── footer.php
+        │   └── header.php
+        ├── <span class="folder">css/</span>
+        │   └── styles.css
+        ├── index.php
+        └── <span class="folder">projects/</span>
+            ├── gophers.php
+            ├── index.php
+            └── pandas.php
+</pre>
+      <p>The <code>header.php</code> file contains the following code</p>
+      <pre class="code_block">
+&lt;!doctype html>
+&lt;html lang='eng'>
+
+&lt;head>
+  &lt;title>Website Title&lt;/title>
+  &lt;link href='/css/style.css' rel='stylesheet'>
+  &lt;meta charset="UTF-8">
+&lt;/head>
+
+&lt;body id="php">
+&lt;div id="wrapper">
+&lt;nav>
+  &lt;a href="#">Link to page&lt;/a>
+  &lt;a href="#">Link to page&lt;/a>
+  &lt;a href="#">Link to page&lt;/a>
+&lt;/nav>
+</pre>
+
+      <p>Now, we can include the <code>header.php</code> in any other file without the need to type in all the HTML. Another benefit, is that we can change the code in one place, and all other files get those changes.</p>
+      <p>Instead of our <code>projects/gophers.php</code> file like this:</p>
+      <pre class="code_block">
+&lt;!doctype html>
+&lt;html lang='eng'>
+
+&lt;head>
+  &lt;title>Website Title&lt;/title>
+  &lt;link href='/css/style.css' rel='stylesheet'>
+  &lt;meta charset="UTF-8">
+&lt;/head>
+
+&lt;body id="php">
+  &lt;div id="wrapper">
+    &lt;nav>
+      &lt;a href="#">Link to page&lt;/a>
+      &lt;a href="#">Link to page&lt;/a>
+      &lt;a href="#">Link to page&lt;/a>
+    &lt;/nav>
+    &lt;main>
+      &lt;h1>Gophers!&lt;/h1>
+      &lt;p>All the cool content about gophers&lt;/p>
+      &lt;p>Another paragraph about these cute little tunnel diggers.&lt;/p>
+    &lt;/main>
+    &lt;footer>
+      &lt;p>&amp;copy; 1922-2022, The Cool Website.&lt;/p>
+      &lt;p>Bringing cool stuff to you daily since 1922&lt;/p>
+    &lt;/footer>
+  &lt;/div>
+&lt;/body>
+&lt;/html>
+</pre>
+
+      <p>It can now look like this:</p>
+      <pre class="code_block">
+&lt;?php include '<span class="abs_path">/var/www/coolwebsite/common/header.php</span>'; ?>
+
+    &lt;main>
+      &lt;h1>Gophers!&lt;/h1>
+      &lt;p>All the cool content about gophers&lt;/p>
+      &lt;p>Another paragraph about these cute little tunnel diggers.&lt;/p>
+    &lt;/main>
+    &lt;footer>
+      &lt;p>&amp;copy; 1922-2022, The Cool Website.&lt;/p>
+      &lt;p>Bringing cool stuff to you daily since 1922&lt;/p>
+    &lt;/footer>
+  &lt;/div>
+&lt;/body>
+&lt;/html>
+</pre>
+
+      <p>Absolute paths can take a few different forms in PHP. They all come out to the same thing, though; the path from the root of the computer to the file you select.</p>
+      <p>PHP has built in, Super Global variables that can help us create the file path. The variable <code>$_SERVER['DOCUMENT_ROOT']</code> is a shortcut for the file path from the root of the server to the web root folder.</p>
+
+      <p>This can be used in the code above like this:</p>
+
+    <pre class="code_block">&lt;?php include <span class="abs_path">$_SERVER['DOCUMENT_ROOT'] . 'common/header.php'</span>; ?></pre>
+
+    <p><span class="abs_path">$_SERVER['DOCUMENT_ROOT']</span> maps to <span class="abs_path">/var/www/</span></p>
+    <p>This Super Global Variable is beneficial when writing PHP code, because the path to the web root directory may change if you move the code from a local development to a web server, or from web server to a different web server.</p>
+
+    <p>The thing to remember when using <span class="abs_path">Absolute Paths</span> in PHP is that the path is relative to the server or computer where the script is running. That path begins at the root of the computer.</p>
+
+    <h2 class="rel_path">Relative Paths</h2>
+      <p>A Relative Path in PHP means that the path depends upon the folder in which the script resides when it is called.</p>
+
+
+      <p>If we remember our folder structure for our website:</p>
+      <pre>
+  > tree -L 4 var/
+  <span class="folder">var/</span>
+    └── <span class="folder">www/</span>
+      └── <span class="folder">coolwebsite/</span>
+        ├── <span class="folder">common/</span>
+        │   ├── footer.php
+        │   └── header.php
+        ├── <span class="folder">css/</span>
+        │   └── styles.css
+        ├── index.php
+        └── <span class="folder">projects/</span>
+            ├── gophers.php
+            ├── index.php
+            └── pandas.php
+</pre>
+
+      <p>If the <code>footer.php</code> file looks like this:</p>
+<pre class="code_block">
+    &lt;footer>
+      &lt;p>&amp;copy; 1922-2022, The Cool Website.&lt;/p>
+      &lt;p>Bringing cool stuff to you daily since 1922&lt;/p>
+    &lt;/footer>
+</pre>
+      <p>If we want to include the <code>footer.php</code> file into our <code>pandas.php</code> file using a relative path, we would do it like so:</p>
+
+      <pre class="code_block">
+&lt;!doctype html>
+&lt;html lang='eng'>
+
+&lt;head>
+  &lt;title>Website Title&lt;/title>
+  &lt;link href='/css/style.css' rel='stylesheet'>
+  &lt;meta charset="UTF-8">
+&lt;/head>
+
+&lt;body id="php">
+  &lt;div id="wrapper">
+    &lt;nav>
+      &lt;a href="#">Link to page&lt;/a>
+      &lt;a href="#">Link to page&lt;/a>
+      &lt;a href="#">Link to page&lt;/a>
+    &lt;/nav>
+    &lt;main>
+      &lt;h1>PANDAS!&lt;/h1>
+      &lt;p>All the cool content about pandas&lt;/p>
+      &lt;p>Another paragraph about these cute two-tone bears.&lt;/p>
+    &lt;/main>
+    &lt;?php include '<span class="rel_path">../common/footer.php</span>'; ?>
+  &lt;/div>
+&lt;/body>
+&lt;/html>
+</pre>
+
+
+      <p>To indicate that you are traversing the file structure (or moving in and out of folders, or up and down into folders), you will use two periods (<code>..</code>) to represent moving out of a folder, or up the structure.</p>
+
+      <p>As another example, if we want to include the <code>gopher.php</code> file into the <code>/var/www/coolwebsite/projects/index.php</code> file (just for illustrative purposes), we could do so like this:</p>
+
+      <pre class="code_block">
+        &lt;?php include '<span class="rel_path">gopher.php</span>'; ?>
+      </pre>
+
+      <p>Since both files are in the same directory, you just need to include the filename and no other path information.</p>
+
+      <p>The thing to remember for <span class="rel_path">Relative Paths</span> in PHP, is that the file path is determined by the folder in which the PHP file is called.</p>
+
+      <p>If the file path starts with periods <code>..</code>, or does not start with a forward slash <code>/</code>, then it is a <span class="rel_path">Relative path</span>.</p>
+    </main>
+
+
+
+    <nav>
+      <a title="Link to Home" href="/index.html">Home</a>
+      <a title="Link to HTML example" href="/html/index.html">HTML Example</a>
+    </nav>
+
+
+
+    <footer>
+      <p>&copy; 2022, Ammon Shepherd</p>
+    </footer>
+
+
+</body>
+
+</html>
