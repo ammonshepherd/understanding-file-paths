@@ -51,7 +51,7 @@
     <h2 class="abs_path">Absolute Paths</h2>
       <p>In PHP, file paths are associated with the file system of the computer. The root directory in a PHP file path maps to the the root directory of the computer, or web server (or Docker container).</p>
 
-      <p>We often include other PHP files in our PHP code. This makes it easy to modularize our website. We can take the common HTML or other code, and place it a separate files for all other PHP files to access. For example, we can take the HTML for the beginning of a website and place it in a <code>header.php</code> file. Then all of the website's pages can reference, or include, the <code>header.php</code> file to get all of the HTML.</p>
+      <p>We often include other PHP files in our PHP code. This makes it easy to modularize our website. We can take the common HTML or other code, and place it in a separate file for all other PHP files to access. For example, we can take the HTML for the beginning of a website and place it in a <code>header.php</code> file. Then all of the website's pages can reference, or include, the <code>header.php</code> file to get all of the HTML.</p>
 
       <p>For example, let's say we have this folder structure for our website:</p>
       <pre>
@@ -148,7 +148,7 @@
 
     <pre class="code_block">&lt;?php include <span class="abs_path">$_SERVER['DOCUMENT_ROOT'] . 'common/header.php'</span>; ?></pre>
 
-    <p><span class="abs_path">$_SERVER['DOCUMENT_ROOT']</span> maps to <span class="abs_path">/var/www/</span></p>
+    <p>In our example here, <span class="abs_path">$_SERVER['DOCUMENT_ROOT']</span> maps to <span class="abs_path">/var/www/coolwebsite/</span></p>
     <p>This Super Global Variable is beneficial when writing PHP code, because the path to the web root directory may change if you move the code from a local development to a web server, or from web server to a different web server.</p>
 
     <p>The thing to remember when using <span class="abs_path">Absolute Paths</span> in PHP is that the path is relative to the server or computer where the script is running. That path begins at the root of the computer.</p>
@@ -223,7 +223,7 @@
 
       <p>Since both files are in the same directory, you just need to include the filename and no other path information.</p>
 
-      <p>The thing to remember for <span class="rel_path">Relative Paths</span> in PHP, is that the file path is determined by the folder in which the PHP file is called.</p>
+      <p>The thing to remember for <span class="rel_path">Relative Paths</span> in PHP, is that the file path is determined by the folder in which the PHP file resides that uses the relative path.</p>
 
       <p>If the file path starts with periods <code>..</code>, or does not start with a forward slash <code>/</code>, then it is a <span class="rel_path">Relative path</span>.</p>
     </main>

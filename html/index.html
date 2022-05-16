@@ -45,10 +45,10 @@
 
       <p>and links to the following file on the web server/computer.</p>
 
-      <code class="lefty">/var/www/coolwebsite<span class="abs_path">/html/absolute.html</span></code>
+      <code class="lefty">/var/www/coolwebsite<span class="abs_path">/projects/pandas.html</span></code>
 
       <p>We could also include the full URL in the link. This is also an acceptable absolute file path.</p>
-      <code class="lefty">&lt;a href="http://coolwebsite.com<span class="abs_path">/html/absolute.html</span>"&gt;Absolute link&lt;/a&gt;</code>
+      <code class="lefty">&lt;a href="http://coolwebsite.com<span class="abs_path">/projects/pandas.html</span>"&gt;My Panda Project&lt;/a&gt;</code>
 
       <p>By using the Fully Qualified Domain Name (FQDN) or using the forward slash <code>/</code>, you can access the web root of that website.</p>
       <p>The forward slashes in a website address (after the FQDN) reference folders in the web root. (Unless you are using a web framework that utilizes routing.)</p>
@@ -108,14 +108,14 @@
       <p>The <code>index.html</code> file and the <code>css</code> folder reside in the same <code>coolwebsite</code> folder.</p>
 
       <div class="center-image">
-        <img alt="index.html file and css folder in same folder" src="/images/styles.png">
+        <img alt="index.html file and css folder in same folder" src="../images/styles.png">
       </div>
 
 
       <p>Now, what about our <code>pandas.html</code> file? In order for it to access the <code>styles.css</code> file, it needs to go outside it's parent directory (<code>projects</code>), then into the <code>css</code> folder.</p>
 
       <div class="center-image">
-        <img alt="out of the parent folder, into the css folder" src="/images/rel.png">
+        <img alt="out of the parent folder, into the css folder" src="../images/rel.png">
       </div>
 
       <p>To indicate that you are traversing the file structure (or moving in and out of folders, or up and down into folders), you will use two periods (<code>..</code>) to represent moving out of a folder, or up the structure.</p>
@@ -123,7 +123,8 @@
 
       <code class="lefty">&lt;link href="<span class="rel_path">../css/styles.css</span>" rel="stylesheet"&gt;</code>
 
-      <p>Why do we say up and down the file structure? Traditionally, back in the ancient days of computing when interaction with the computer was purely text based, the 'graphical' depiction of the file structure was that of a tree, or outline of folders and files. It might looks something like this:</p>
+      <div class="note">
+        <p>Why do we say up and down the file structure? Traditionally, back in the ancient days of computing when interaction with the computer was purely text based, the 'graphical' depiction of the file structure was that of a tree, or outline of folders and files. It might looks something like this:</p>
 
       <pre>> tree -L 4 var/
 <span class="folder">var/</span>
@@ -136,7 +137,8 @@
             └── pandas.html
 </pre>
 
-      <p>Thus, using <code>..</code>, you can traverse the entire file structure of the website, and the server (as far as is allowed).</p>
+        <p>Thus, using <code>..</code>, you can traverse the entire file structure of the website, and the server (as far as is allowed).</p>
+      </div><!-- note -->
 
       <p>The thing to remember with <span class="rel_path">Relative paths</span> is that they depend upon the location of the file that uses the path.</p>
       <p>If the file path starts with periods <code>..</code>, or does not start with a forward slash <code>/</code>, then it is a <span class="rel_path">Relative path</span>.</p>
