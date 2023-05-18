@@ -32,7 +32,7 @@
           <dd>
             <p>The path begins at the computer's root directory. If the path begins with a forward slash <code>/</code> or the full HTTP protocol, then it is an absolute path.</p>
             <pre class="code_block">&lt;link rel="stylesheet" href="<span class="abs_path">/css/style.css</span>"></pre>
-            <pre class="code_block">&lt;a href="<span class="abs_path">http://coolwebsite/html/index.html</span>">HTML Page&lt;/a></pre>
+            <pre class="code_block">&lt;a href="<span class="abs_path">http://coolwebsite.com/html/index.html</span>">HTML Page&lt;/a></pre>
             <pre class="code_block">&lt;?php include '<span class="abs_path">/var/www/coolwebsite/common/header.php</span>'; ?></pre>
             <pre class="code_block">&lt;?php include <span class="abs_path">$_SERVER['DOCUMENT_ROOT'] . 'common/header.php'</span>; ?></pre>
           </dd>
@@ -40,6 +40,7 @@
           <dt><span class="rel_path">Relative Path</span></dt>
           <dd>
             <p>The path is relative to the folder where the file lives. If the path begins with a double period <code>..</code> or NO forward slash <code>/</code>, then it is a relative path.</p>
+            <pre class="code_block">&lt;link rel="stylesheet" href="<span class="rel_path">../css/style.css</span>"></pre>
             <pre class="code_block">&lt;link rel="stylesheet" href="<span class="rel_path">css/style.css</span>"></pre>
             <pre class="code_block">&lt;a href="<span class="rel_path">html/index.html</span>">HTML Page&lt;/a></pre>
             <pre class="code_block">&lt;?php include '<span class="rel_path">common/header.php</span>'; ?></pre>
